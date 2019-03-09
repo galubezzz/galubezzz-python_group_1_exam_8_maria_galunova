@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {NavLink} from 'react-router-dom';
 
 class TaskDetails extends Component {
 
@@ -24,16 +25,17 @@ class TaskDetails extends Component {
     }
 
     render() {
+
         if (!this.state.task) return null;
         return (
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">{this.state.task.summary}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{this.state.task.status}</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">{this.state.task.status_display}</h6>
                     <p className="card-text">Описание: {this.state.task.description}</p>
-                    <p>Сделать до: {this.state.task.due_date}</p>
+                    <p>Сделать до: {this.state.task.due_date.split('T')[0]} {this.state.task.due_date.split('T').pop().split('Z')}</p>
                     <p>Оценка: {this.state.task.time_planned}</p>
-
+                    <NavLink className="nav-link" to="/">К списку задач</NavLink>
                 </div>
             </div>
         )

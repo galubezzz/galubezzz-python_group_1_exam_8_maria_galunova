@@ -49,25 +49,25 @@ class Task extends Component {
         const link = "/task/" + this.props.task.id;
         const link_edit = '/tasks/edit/' + this.props.task.id;
         return (
-            <div className="card">
+            <div className="card mb-1">
                 <div className="card-body">
                     <h5 className="card-title">{this.props.task.summary}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{this.props.task.status}</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">{this.props.task.status_display}</h6>
                     <p className="card-text">{this.props.task.description}</p>
                     <NavLink className="nav-link" to={link}>Подробнее</NavLink>
                     <NavLink className="nav-link" to={link_edit}>Редактировать</NavLink>
-                    {this.props.task.status === "backlog" && <i className="fas fa-arrow-right"
+                    {this.props.task.status === "backlog" && <i className="fas fa-arrow-right m-1"
                                                                 onClick={() => (this.updateStatus(this.props.task.id, this.props.task.status, 1))}/>}
                     {this.props.task.status === "in progress" &&
                     <div>
-                        <i className="fas fa-arrow-left"
+                        <i className="fas fa-arrow-left m-1"
                            onClick={() => (this.updateStatus(this.props.task.id, this.props.task.status, -1))}/>
-                        <i className="fas fa-arrow-right"
+                        <i className="fas fa-arrow-right m-1"
                            onClick={() => (this.updateStatus(this.props.task.id, this.props.task.status, 1))}/>
                     </div>}
                     {this.props.task.status === "done" && <i className="fas fa-arrow-left"
                                                              onClick={() => (this.updateStatus(this.props.task.id, this.props.task.status, -1))}/>}
-                    <i className="fas fa-trash-alt" onClick={() => (this.deleteTask(this.props.task.id))}></i>
+                       <i className="fas fa-trash-alt m-1" onClick={() => (this.deleteTask(this.props.task.id))}></i>
                 </div>
             </div>
         )

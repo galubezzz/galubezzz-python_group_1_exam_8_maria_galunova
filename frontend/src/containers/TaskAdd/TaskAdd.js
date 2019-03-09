@@ -122,8 +122,8 @@ class TaskAdd extends Component {
                            onChange={this.inputChanged}/>
                 </div>
                 <div className="form-group">
-                    <label>Статусы</label>
-                    <Select options={select_options} name='status'
+                    <label>Статус</label>
+                    <Select options={select_options} name='status' value={select_options}
                             onChange={() => this.selectChanged('status')}/>
                 </div>
                 <button disabled={this.state.submitDisabled} type="submit"

@@ -25,9 +25,10 @@ class TaskDetails extends Component {
             return newState;
         });
     };
-    selectChanged = (field) => {
-        const status = "backlog";
+    selectChanged = (field, value) => {
+        const status = value.value;
         this.updateTaskState(field, status);
+        console.log("FFF"+ status + field);
     };
     // обработчик ввода в поля ввода
     inputChanged = (event) => {
@@ -97,7 +98,7 @@ class TaskDetails extends Component {
 
         // форматирование дат для DatePicker'ов
         const due_date_selected = due_date ? new Date(due_date) : null;
-        const select_options = [{value: "backlog", label: "Очередь"}];
+        const status_options = [{value: "backlog", label: "Очередь"}, {value: "in progress", label: "В процессе"}, {value: "done", label: "Сделано"}];
 
         return <div>
             {alert}
@@ -124,9 +125,9 @@ class TaskDetails extends Component {
                            onChange={this.inputChanged}/>
                 </div>
                 <div className="form-group">
-                    <label>Статусы</label>
-                    <Select options={select_options} name='status'
-                            onChange={() => this.selectChanged('status')}/>
+                    <label>Статус</label>
+                    <Select options={status_options} name='status' value={{value: this.state.task.status, label: this.state.task.status_display}}
+                            onChange={(value) => this.selectChanged("status", value)}/>
                 </div>
                 <button disabled={this.state.submitDisabled} type="submit"
                         className="btn btn-primary">Сохранить</button>
