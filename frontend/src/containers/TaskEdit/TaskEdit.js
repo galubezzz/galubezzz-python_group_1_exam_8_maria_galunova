@@ -4,25 +4,16 @@ import Select from 'react-select';
 
 import axios from 'axios';
 
+class TaskDetails extends Component {
 
-class TaskAdd extends Component {
     state = {
-        // фильм, который мы редактируем
-        task: {
-            summary: "",
-            description: "",
-            due_date: "",
-            status: "",
-            time_planned: ""
-        },
-
-        // сообщение об ошибке
+        task: [],
+         // сообщение об ошибке
         alert: null,
 
         // индикатор отключения кнопки submit, если запрос выполняется
         submitDisabled: false
     };
-
 
     // функция, обновляющая поля в this.state.task
     updateTaskState = (fieldName, value) => {
@@ -63,12 +54,7 @@ class TaskAdd extends Component {
         });
         const TASKS_URL = 'http://localhost:8000/api/v1/tasks/';
         // отправка запроса
-        axios.post(TASKS_URL, this.state.task)
-            .then(response => {
-                console.log(response.data);
-                if (response.status === 201) return response.data;
-                throw new Error('Task was not added!');
-            })
+        axios.put(TASKS_URL + this.state.task.id + '/', this.state.task)
             // если всё успешно, переходим на просмотр страницы фильма с id,
             // указанным в ответе
             .then(task => this.props.history.replace('/'))
@@ -76,12 +62,28 @@ class TaskAdd extends Component {
                 console.log(error);
                 this.setState(prevState => {
                     let newState = {...prevState};
-                    newState.alert = {type: 'danger', message: `Task was not added!`};
+                    newState.alert = {type: 'danger', message: `Task was not changed!2`};
                     newState.submitDisabled = false;
                     return newState;
                 });
             });
     };
+
+    componentDidMount() {
+        // match - атрибут, передаваемый роутером, содержащий путь к этому компоненту
+        const match = this.props.match;
+        const TASKS_URL = 'http://localhost:8000/api/v1/tasks/';
+
+        // match.params - переменные из пути (:id)
+        // match.params.id - значение переменной, обозначенной :id в свойстве path Route-а.
+        axios.get(TASKS_URL + match.params.id)
+            .then(response => {
+                console.log(response.data);
+                return response.data;
+            })
+            .then(task => this.setState({task: task}))
+            .catch(error => console.log(error));
+    }
 
     render() {
         // распаковка данных фильма, чтобы было удобнее к ним обращаться
@@ -133,5 +135,4 @@ class TaskAdd extends Component {
     };
 }
 
-
-export default TaskAdd;
+export default TaskDetails;

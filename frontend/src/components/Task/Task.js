@@ -47,6 +47,7 @@ class Task extends Component {
 
     render() {
         const link = "/task/" + this.props.task.id;
+        const link_edit = '/tasks/edit/' + this.props.task.id;
         return (
             <div className="card">
                 <div className="card-body">
@@ -54,7 +55,7 @@ class Task extends Component {
                     <h6 className="card-subtitle mb-2 text-muted">{this.props.task.status}</h6>
                     <p className="card-text">{this.props.task.description}</p>
                     <NavLink className="nav-link" to={link}>Подробнее</NavLink>
-                    <NavLink className="nav-link" to='/tasks/add'>Редактировать</NavLink>
+                    <NavLink className="nav-link" to={link_edit}>Редактировать</NavLink>
                     {this.props.task.status === "backlog" && <i className="fas fa-arrow-right"
                                                                 onClick={() => (this.updateStatus(this.props.task.id, this.props.task.status, 1))}/>}
                     {this.props.task.status === "in progress" &&

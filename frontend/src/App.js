@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TaskList from "./containers/TaskList/TaskList"
 import TaskDetails from "./containers/TaskDetails/TaskDetails"
 import TaskAdd from "./containers/TaskAdd/TaskAdd"
+import TaskEdit from "./containers/TaskEdit/TaskEdit"
 import {BrowserRouter} from 'react-router-dom';
 import {Switch, Route} from 'react-router';
 
@@ -12,6 +13,7 @@ class App extends Component {
                 <BrowserRouter>
                     <Switch>
                         <Route path='/tasks/add' component={TaskAdd}/>
+                        <Route path='/tasks/edit/:id' component={TaskEdit}/>
                         <Route exact path="/" component={TaskList}/>
                         <Route path="/task/:id" component={TaskDetails}/>
                     </Switch>
