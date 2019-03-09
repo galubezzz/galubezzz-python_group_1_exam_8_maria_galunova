@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import axios from 'axios';
 
 class Task extends Component {
-    
+
 
     updateStatus(id, status, index) {
         const TASKS_URL = 'http://localhost:8000/api/v1/tasks/';
@@ -54,6 +54,7 @@ class Task extends Component {
                     <h6 className="card-subtitle mb-2 text-muted">{this.props.task.status}</h6>
                     <p className="card-text">{this.props.task.description}</p>
                     <NavLink className="nav-link" to={link}>Подробнее</NavLink>
+                    <NavLink className="nav-link" to='/tasks/add'>Редактировать</NavLink>
                     {this.props.task.status === "backlog" && <i className="fas fa-arrow-right"
                                                                 onClick={() => (this.updateStatus(this.props.task.id, this.props.task.status, 1))}/>}
                     {this.props.task.status === "in progress" &&

@@ -30,9 +30,9 @@ class TaskDetails extends Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.state.task.summary}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{this.state.task.status}</h6>
-                    <p className="card-text">{this.state.task.description}</p>
-                    <span>{this.state.task.due_date}</span>
-                    <span>{this.state.task.time_planned}</span>
+                    <p className="card-text">Описание: {this.state.task.description}</p>
+                    <p>Сделать до: {this.state.task.due_date}</p>
+                    <p>Оценка: {this.state.task.time_planned}</p>
 
                 </div>
             </div>

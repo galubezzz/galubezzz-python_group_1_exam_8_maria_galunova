@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-
-// из библиотеки react-datepicker
-// стили для дэйтпикера подключены в index.js! без них он не работает!
 import DatePicker from "react-datepicker";
-// из библиотеки react-select
 import Select from 'react-select';
 
 import axios from 'axios';
@@ -75,7 +71,7 @@ class TaskAdd extends Component {
             })
             // если всё успешно, переходим на просмотр страницы фильма с id,
             // указанным в ответе
-            .then(task => this.props.history.replace('/task/' + task.id))
+            .then(task => this.props.history.replace('/'))
             .catch(error => {
                 console.log(error);
                 this.setState(prevState => {
@@ -116,7 +112,7 @@ class TaskAdd extends Component {
                 <div className="form-group">
                     <label className="font-weight-bold">Дата дедлайна</label>
                     <div>
-                        <DatePicker dateFormat="yyyy-MM-dd HH:MM:ss" selected={due_date_selected} className="form-control"
+                        <DatePicker dateFormat="yyyy-MM-dd HH:MM:ss" showTimeSelect timeFormat="HH:mm" selected={due_date_selected} className="form-control"
                                     name="release_date" onChange={(date) => this.dateChanged('due_date', date)}/>
                     </div>
                 </div>

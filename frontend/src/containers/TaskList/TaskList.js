@@ -16,7 +16,7 @@ class TaskList extends Component {
         done: []
     };
 
-    getT() {
+    getTasks() {
         axios.get(TASKS_URL)
             .then(response => {
                 console.log(response.data);
@@ -48,7 +48,7 @@ class TaskList extends Component {
     }
 
     componentDidMount() {
-        this.getT()
+        this.getTasks()
 
     }
 
@@ -61,7 +61,7 @@ class TaskList extends Component {
                     <h3>Очередь</h3>
                     {this.state.backlog.map(task => {
                         return <div>
-                            <Task task={task} updateBoard={this.getT.bind(this)} key={task.id}/>
+                            <Task task={task} updateBoard={this.getTasks.bind(this)} key={task.id}/>
                         </div>
                     })}
                 </div>
@@ -69,7 +69,7 @@ class TaskList extends Component {
                     <h3>В работе</h3>
                     {this.state.in_progress.map(task => {
                         return <div>
-                            <Task task={task} updateBoard={this.getT.bind(this)} key={task.id}/>
+                            <Task task={task} updateBoard={this.getTasks.bind(this)} key={task.id}/>
                         </div>
                     })}
                 </div>
@@ -77,7 +77,7 @@ class TaskList extends Component {
                     <h3>Сделано</h3>
                     {this.state.done.map(task => {
                         return <div>
-                            <Task task={task} updateBoard={this.getT.bind(this)} key={task.id}/>
+                            <Task task={task} updateBoard={this.getTasks.bind(this)} key={task.id}/>
                         </div>
                     })}
                 </div>
