@@ -1,6 +1,7 @@
 import React, {Fragment, Component} from 'react'
 import {NavLink} from "react-router-dom";
 import axios from 'axios';
+import Task from "../../components/Task/Task"
 
 
 // компонент для показа списка фильмов клиенту
@@ -25,7 +26,7 @@ class TaskList extends Component {
             <div className='row'>
                 {this.state.tasks.map(task => {
                     return <div className='col-xs-12 col-sm-6 col-lg-4 mt-3'  key={task.id}>
-                        <div>{task.summary} {task.description}</div>
+                        <Task task={task}/>
                     </div>
                 })}
             </div>
